@@ -32,12 +32,14 @@ io.on('connection', (socket) => {
         socket.to(room).emit("receive_message", {
             message : `${name} has joined the channel!`,
             name : serverChatName,
-            timestamp: timestamp
+            timestamp: timestamp,
+            own: false
         });
         socket.emit("receive_message", {
             message : `Welcome, ${name}!`,
             name : serverChatName,
-            timestamp: timestamp
+            timestamp: timestamp,
+            own: false
         })
 
         let currentRoomUsers = allUsers.filter((user) => user.room === room);
@@ -50,12 +52,14 @@ io.on('connection', (socket) => {
         socket.to(room).emit("receive_message",{
             message: message,
             name: name,
-            timestamp: Date.now()
+            timestamp: Date.now(),
+            own: false
         })
         socket.emit("receive_message",{
                 message: message,
                 name: "You",
-                timestamp: Date.now()
+                timestamp: Date.now(),
+                own: true
             }
 
 
