@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginPage from './pages/loginpage';
+import CreateRoom from './pages/createRoomPage';
 import React, { useState } from 'react';
 import io from 'socket.io-client';
 import Chat from './pages/chat';
@@ -41,6 +42,16 @@ function App() {
                   path='/chat'
                   element={<Chat name={name} room={room} socket={socket} palette={palette} />}
               />
+              <Route path='/createRoom' element={
+                  <CreateRoom
+                      name={name}
+                      setName={setName}
+                      room={room}
+                      setRoom={setRoom}
+                      socket={socket}
+                      palette={palette}
+                  />
+              }/>
           </Routes>
         </div>
           </ThemeProvider>

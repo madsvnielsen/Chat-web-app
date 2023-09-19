@@ -4,9 +4,8 @@
 import {Form, useNavigate} from 'react-router-dom';
 import Button from '@mui/material/Button';
 import {FormControl, InputLabel, Select, MenuItem, Box, TextField, colors} from "@mui/material";
-import {useEffect, useState} from "react";
 
-const LoginPage = ({ name, setName, room, setRoom, socket, palette}) => {
+const CreateRoom = ({ name, setName, room, setRoom, socket, palette}) => {
     const styles = {
         loginContainer:{
             width: 300,
@@ -104,33 +103,14 @@ const LoginPage = ({ name, setName, room, setRoom, socket, palette}) => {
             navigate('/chat', {replace: true})
         }
     }
-
-    const createRoom = () => {
-        navigate('/createRoom', {replace: true})
+    const joinExistingRoom = () => i{
+        navigate('/', {replace: true})
     }
-
-    const [joinableRooms, setJoinableRooms] = useState([]);
-    let [didGetList, setDidGetList] = useState(false);
-
-    useEffect(() => {
-        if(!didGetList){
-            socket.emit("get_rooms", null);
-            setDidGetList(true)
-        }
-
-        socket.on('receive_rooms', (data) => {
-            console.log(data);
-            setJoinableRooms(data);
-
-        })
-    });
-
-
 
     return (
         <div style={styles.backgroundContainer}>
             <div >
-                <h1 style={styles.header}>{`quickChat`}</h1>
+                <h1 style={styles.header}>{`Create room`}</h1>
                 <Box
                     sx={styles.loginContainer}
                 >
@@ -142,32 +122,18 @@ const LoginPage = ({ name, setName, room, setRoom, socket, palette}) => {
                                sx={styles.inputStyle}
 
                     />
-                <FormControl fullWidth>
-                    <InputLabel id="room-select-label" sx={styles.selectLabelStyle}>Room</InputLabel>
-                    <Select labelId={"room-select-label"}
-                            id={"room-select"}
-                            value={room}
-                            label={"Room"}
-                            sx={styles.selectStyle}
-                            onChange={(event) => {setRoom(event.target.value)}}
-                    >
-                        {
+                    <TextField id="filled-basic"
+                               label="Room name"
+                               variant="outlined"
+                               onChange={(e)=>{setRoom(e.target.value);}}
+                               sx={styles.inputStyle}
 
-                            joinableRooms.length > 0 ?
-                            joinableRooms.map((room, i) => (
-                            <MenuItem value={room}>{room}</MenuItem>
-                        )) :
-
-                                <MenuItem >No active rooms</MenuItem>
-                        }
-
-                    </Select>
-                </FormControl>
+                    />
                     <Button  variant="contained" onClick={joinRoom} sx={styles.joinButtonStyle}>Join Room</Button>
                 </Box>
 
             </div>
-            <div  style={styles.createRoomStyle} onClick={createRoom}>Create room</div>
+            <div  style={styles.createRoomStyle} onClick={joinExistingRoom}>Join room</div>
 
         </div>
     );
@@ -176,4 +142,4 @@ const LoginPage = ({ name, setName, room, setRoom, socket, palette}) => {
 };
 
 
-export default LoginPage;
+export default CreateRoom;

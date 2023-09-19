@@ -16,17 +16,28 @@ const io = new Server(server, {
     },
 });
 
+let allRooms = [];
+
 
 let allUsers = [];
 
 io.on('connection', (socket) => {
     console.log(`User connected ${socket.id}`);
 
+
+    socket.on("get_rooms", (data) =>{
+        socket.emit("receive_rooms", allRooms)
+        console.log(allRooms);
+    })
+
     let timestamp =  Date.now();
     socket.on('join_room', (data) =>{
         const {name, room} = data;
         socket.join(room);
         allUsers.push({name: name, room: room})
+        if(!allRooms.find(x => x === room) !== undefined){
+            allRooms.push(room);
+        }
 
 
         socket.to(room).emit("receive_message", {
