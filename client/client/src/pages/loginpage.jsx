@@ -6,11 +6,11 @@ import Button from '@mui/material/Button';
 import {FormControl, InputLabel, Select, MenuItem, Box, TextField, colors} from "@mui/material";
 import {useEffect, useState} from "react";
 
-const LoginPage = ({ name, setName, room, setRoom, socket, palette}) => {
+const Loginpage = ({ name, setName, room, setRoom, socket, palette}) => {
     const styles = {
         loginContainer:{
-            width: 300,
-            height: 220,
+            width: 200,
+            height: 200,
             marginLeft: "auto",
             marginRight: "auto",
             backgroundColor: palette.third,
@@ -20,8 +20,7 @@ const LoginPage = ({ name, setName, room, setRoom, socket, palette}) => {
         },
         backgroundContainer: {
             backgroundColor: palette.primary,
-            width: "100%",
-            height: "100vh",
+
             padding: 5
 
         },
@@ -30,7 +29,7 @@ const LoginPage = ({ name, setName, room, setRoom, socket, palette}) => {
         },
         inputStyle:{
             input:{
-                color: palette.fourth,
+                color: palette.fifth,
                 backgroundColor: palette.secondary,
                 borderRadius: 1,
                 fontFamily: 'Montserrat'
@@ -42,7 +41,7 @@ const LoginPage = ({ name, setName, room, setRoom, socket, palette}) => {
             boxShadow: 1,
 
             label:{
-                color: palette.fourth,
+                color: palette.fifth,
                 fontFamily: 'Montserrat'
             },
             outline:{
@@ -53,7 +52,7 @@ const LoginPage = ({ name, setName, room, setRoom, socket, palette}) => {
         },
         selectStyle: {
             backgroundColor: palette.secondary,
-            color: palette.fourth,
+            color: palette.primary,
             textAlign: "left",
             fontFamily: 'Montserrat',
             boxShadow: 1,
@@ -63,7 +62,7 @@ const LoginPage = ({ name, setName, room, setRoom, socket, palette}) => {
 
         selectLabelStyle: {
             marginLeft: "auto",
-            color: palette.fourth,
+            color: palette.primary,
             fontFamily: 'Montserrat',
 
 
@@ -71,25 +70,25 @@ const LoginPage = ({ name, setName, room, setRoom, socket, palette}) => {
         },
 
         joinButtonStyle:{
-            margin: 5,
+            marginTop: 5,
             width: 150,
             height: 50,
             fontSize: 15,
             color: palette.fourth,
             fontWeight: "bold",
-            backgroundColor:  palette.secondary,
+            backgroundColor:  palette.primary,
             fontFamily: 'Montserrat',
 
         },
 
         createRoomStyle:{
-            color: "white",
+            color: palette.fourth,
             marginTop: 8,
             marginLeft: "auto",
             marginRight: "auto",
             textDecoration: "underline",
             cursor: "grab",
-            width: "10%"
+            width: 200
         }
     }
 
@@ -126,11 +125,12 @@ const LoginPage = ({ name, setName, room, setRoom, socket, palette}) => {
     });
 
 
+    document.body.style.backgroundColor = palette.primary;
 
     return (
         <div style={styles.backgroundContainer}>
             <div >
-                <h1 style={styles.header}>{`quickChat`}</h1>
+                <h1 style={styles.header}>{`Join room`}</h1>
                 <Box
                     sx={styles.loginContainer}
                 >
@@ -167,7 +167,7 @@ const LoginPage = ({ name, setName, room, setRoom, socket, palette}) => {
                 </Box>
 
             </div>
-            <div  style={styles.createRoomStyle} onClick={createRoom}>Create room</div>
+            <div  style={styles.createRoomStyle} onClick={createRoom}>Create new room</div>
 
         </div>
     );
@@ -176,4 +176,4 @@ const LoginPage = ({ name, setName, room, setRoom, socket, palette}) => {
 };
 
 
-export default LoginPage;
+export default Loginpage;

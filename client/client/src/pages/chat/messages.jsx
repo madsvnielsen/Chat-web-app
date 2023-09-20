@@ -7,12 +7,11 @@ const Messages = ({ socket, palette }) => {
 
     const styles = {
         messageContainer:{
-            backgroundColor: palette.secondary,
-            height: "70vh",
-            width: "70vw",
+            backgroundColor: palette.primary,
+            height: 400,
+            width:  "100%",
             marginLeft: "auto",
             marginRight: "auto",
-            padding: 10,
             borderTopLeftRadius: 8,
             borderTopRightRadius: 8,
             marginTop: 10,
@@ -21,15 +20,15 @@ const Messages = ({ socket, palette }) => {
         },
         message:{
             margin: 20,
-            maxWidth: "30vw",
-            minWidth: "30vw",
+            maxWidth: 150,
+            minWidth: 200,
             textAlign: "left",
 
         },
         ownMessage:{
             margin: 20,
-            maxWidth: "30vw",
-            minWidth: "30vw",
+            maxWidth: 150,
+            minWidth: 200,
             textAlign: "left",
             marginLeft: "auto"
 
@@ -41,7 +40,7 @@ const Messages = ({ socket, palette }) => {
             boxShadow: '0px 1px 3px black',
             borderRadius: 15,
             color: palette.fourth,
-            padding: 15,
+            padding: 10,
 
         },
         nameLabel:{

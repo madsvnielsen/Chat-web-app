@@ -20,19 +20,22 @@ const MessageSend = ({ socket, name, room, palette}) => {
     const styles = {
         messageSendContainer:{
             backgroundColor: palette.secondary,
-            width: "70vw",
+            width: "100%",
             marginLeft: "auto",
             marginRight: "auto",
-            padding: 10,
             borderBottomLeftRadius: 8,
             borderBottomRightRadius: 8,
 
 
         },
         messageInput : {
+            width: "70%",
+
+            marginTop: 2,
                 input:{
-                    color: palette.primary,
-                    backgroundColor: palette.fourth,
+
+                    color: palette.fourth,
+                    backgroundColor: palette.primary,
                     borderRadius: 1,
                     padding: 2,
                     fontFamily: 'Montserrat',
@@ -41,7 +44,6 @@ const MessageSend = ({ socket, name, room, palette}) => {
                 },
             marginRight:"auto",
                 marginBottom: 2,
-                width: "70%",
 
                 boxShadow: 1,
                 label:{
@@ -53,8 +55,10 @@ const MessageSend = ({ socket, name, room, palette}) => {
                 },
         },
         sendButton:{
-            width: 100,
+            width: 60,
+            marginTop: 2,
             height: 60,
+            marginBottom: 2,
             marginLeft: 2,
             fontSize: 15,
             color: palette.fourth,

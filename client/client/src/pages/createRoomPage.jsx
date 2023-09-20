@@ -8,8 +8,8 @@ import {FormControl, InputLabel, Select, MenuItem, Box, TextField, colors} from 
 const CreateRoom = ({ name, setName, room, setRoom, socket, palette}) => {
     const styles = {
         loginContainer:{
-            width: 300,
-            height: 220,
+            width: 200,
+            height: 200,
             marginLeft: "auto",
             marginRight: "auto",
             backgroundColor: palette.third,
@@ -19,8 +19,6 @@ const CreateRoom = ({ name, setName, room, setRoom, socket, palette}) => {
         },
         backgroundContainer: {
             backgroundColor: palette.primary,
-            width: "100%",
-            height: "100vh",
             padding: 5
 
         },
@@ -29,7 +27,7 @@ const CreateRoom = ({ name, setName, room, setRoom, socket, palette}) => {
         },
         inputStyle:{
             input:{
-                color: palette.fourth,
+                color: palette.fifth,
                 backgroundColor: palette.secondary,
                 borderRadius: 1,
                 fontFamily: 'Montserrat'
@@ -41,7 +39,7 @@ const CreateRoom = ({ name, setName, room, setRoom, socket, palette}) => {
             boxShadow: 1,
 
             label:{
-                color: palette.fourth,
+                color: palette.fifth,
                 fontFamily: 'Montserrat'
             },
             outline:{
@@ -52,7 +50,7 @@ const CreateRoom = ({ name, setName, room, setRoom, socket, palette}) => {
         },
         selectStyle: {
             backgroundColor: palette.secondary,
-            color: palette.fourth,
+            color: palette.fifth,
             textAlign: "left",
             fontFamily: 'Montserrat',
             boxShadow: 1,
@@ -62,7 +60,7 @@ const CreateRoom = ({ name, setName, room, setRoom, socket, palette}) => {
 
         selectLabelStyle: {
             marginLeft: "auto",
-            color: palette.fourth,
+            color: palette.fifth,
             fontFamily: 'Montserrat',
 
 
@@ -70,13 +68,13 @@ const CreateRoom = ({ name, setName, room, setRoom, socket, palette}) => {
         },
 
         joinButtonStyle:{
-            margin: 5,
-            width: 150,
+            marginTop: 2,
+            width: 180,
             height: 50,
             fontSize: 15,
             color: palette.fourth,
             fontWeight: "bold",
-            backgroundColor:  palette.secondary,
+            backgroundColor:  palette.primary,
             fontFamily: 'Montserrat',
 
         },
@@ -88,12 +86,13 @@ const CreateRoom = ({ name, setName, room, setRoom, socket, palette}) => {
             marginRight: "auto",
             textDecoration: "underline",
             cursor: "grab",
-            width: "10%"
+            width: 200
         }
     }
 
 
 
+    document.body.style.backgroundColor = palette.primary;
 
 
     const navigate = useNavigate();
@@ -103,7 +102,7 @@ const CreateRoom = ({ name, setName, room, setRoom, socket, palette}) => {
             navigate('/chat', {replace: true})
         }
     }
-    const joinExistingRoom = () => i{
+    const joinExistingRoom = () => {
         navigate('/', {replace: true})
     }
 
@@ -129,11 +128,11 @@ const CreateRoom = ({ name, setName, room, setRoom, socket, palette}) => {
                                sx={styles.inputStyle}
 
                     />
-                    <Button  variant="contained" onClick={joinRoom} sx={styles.joinButtonStyle}>Join Room</Button>
+                    <Button  variant="contained" onClick={joinRoom} sx={styles.joinButtonStyle}>Create room</Button>
                 </Box>
 
             </div>
-            <div  style={styles.createRoomStyle} onClick={joinExistingRoom}>Join room</div>
+            <div  style={styles.createRoomStyle} onClick={joinExistingRoom}>Join a room instead</div>
 
         </div>
     );

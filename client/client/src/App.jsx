@@ -1,34 +1,48 @@
 import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LoginPage from './pages/loginpage';
+import Loginpage from './pages/loginpage';
 import CreateRoom from './pages/createRoomPage';
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import io from 'socket.io-client';
 import Chat from './pages/chat';
 import { createTheme, ThemeProvider } from '@mui/material/styles/';
 
-const socket = io.connect('http://localhost:5000')
+const socket = io.connect(process.env.REACT_APP_API_URL)
 
 const palette = {
-    primary:'#32213A', // your primary color
-    third: '#383B53', // your secondary color
-    secondary:'#66717E',
-    fourth: '#ffffff'
+    primary:'#352F44', // your primary color
+    third: '#5C5470', // your secondary color
+    secondary:'#B9B4C7',
+    fourth: '#FAF0E6',
+    fifth: 'black',
 }
 function App() {
     const [name, setName] = useState('');
     const [room, setRoom] = useState('');
-  return (
+    const styles = {
+        logo:{
+            backgroundColor: palette.primary,
+            color: palette.fourth,
+            padding: 10,
+            paddingLeft: 30,
+            textAlign: "left",
+            fontSize: 25
+        }
+    }
+
+
+
+    return (
       <Router>
-          <ThemeProvider theme={theme}>
               <link rel="preconnect" href="https://fonts.googleapis.com"/>
               <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin/>
               <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet"/>
         <div className='App'  style={{fontFamily: 'Montserrat'}}>
+            <div style={styles.logo}>quickChat</div>
           <Routes>
             <Route path='/' element={
-                <LoginPage
+                <Loginpage
                 name={name}
                 setName={setName}
                 room={room}
@@ -54,22 +68,10 @@ function App() {
               }/>
           </Routes>
         </div>
-          </ThemeProvider>
       </Router>
   );
 }
 
-const theme = createTheme({
-    palette: {
-        primary: {
-            main: palette.primary, // your primary color
-        },
-        secondary: {
-            main: palette.secondary, // your secondary color
-        },
-
-    },
-});
 
 
 export default App;

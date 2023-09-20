@@ -34,8 +34,12 @@ io.on('connection', (socket) => {
     socket.on('join_room', (data) =>{
         const {name, room} = data;
         socket.join(room);
-        allUsers.push({name: name, room: room})
-        if(!allRooms.find(x => x === room) !== undefined){
+        allUsers.push({name: name, room: room, id: socket.id})
+        if(!allRooms.some(r => {
+            return r === room;
+
+        })){
+
             allRooms.push(room);
         }
 
@@ -76,6 +80,30 @@ io.on('connection', (socket) => {
 
             )
     })
+
+
+    socket.on("disconnecting", () => {
+    let currentUser = allUsers.find(user=>user.id === socket.id);
+    if(currentUser !== undefined){
+        let currentRoom = currentUser.room;
+        allUsers.splice(allUsers.indexOf(allUsers.find(user => user.id === socket.id)), 1);
+        let currentRoomUsers = allUsers.filter((user) => user.room === currentRoom);
+        socket.to(currentRoom).emit("connected_users", currentRoomUsers);
+
+        socket.to(currentRoom).emit("receive_message", {
+            message : `${currentUser.name} has left the channel...`,
+            name : serverChatName,
+            timestamp: timestamp,
+            own: false
+        });
+
+        if(! allUsers.some(user => user.room === currentRoom)){
+            allRooms.splice(allRooms.indexOf(currentRoom), 1);
+        }
+    }
+
+    });
+
 
     // We can write our socket event listeners in here...
 });

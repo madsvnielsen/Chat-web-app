@@ -1,6 +1,7 @@
 import MessagesReceived from './messages';
 import MessageSend from "./messageSend";
 import TopChatInfo from "./topChatInfo";
+import RoomInfo from "./roomInfo"; 
 const Chat = ({ socket, name, room , palette}) => {
 
     const styles = {
@@ -17,9 +18,22 @@ const Chat = ({ socket, name, room , palette}) => {
         backgroundContainer: {
             backgroundColor: palette.third,
             width: "100%",
-            height: "100vh",
         },
-        header:{
+        chattingContainer: {
+            width: "auto",
+            maxWidth: 800,
+            padding: 10,
+            marginLeft: "auto",
+            marginRight : "auto"
+        },
+      infoContainer: {
+      width: "auto",
+      maxWidth: 800,
+        marginLeft: "auto",
+          marginRight : "auto",
+        padding: 10,
+      },
+      header:{
             color: palette.fourth
         },
         inputStyle:{
@@ -77,12 +91,18 @@ const Chat = ({ socket, name, room , palette}) => {
         }
     }
 
+    document.body.style.backgroundColor = palette.third;
 
     return (
         <div style={styles.backgroundContainer}>
-                <TopChatInfo room={room} palette={palette}/>
+
+              <div style={styles.chattingContainer}>
                 <MessagesReceived socket={socket} palette={palette} />
                 <MessageSend socket={socket} name={name} room={room} palette={palette}/>
+              </div>
+              <div style={styles.infoContainer}>
+                <RoomInfo socket={socket} palette={palette} room={room}/>
+              </div>
         </div>
     );
 };
